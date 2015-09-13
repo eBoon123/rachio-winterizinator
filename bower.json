@@ -10,7 +10,10 @@
     "angular-route": "^1.3.0",
     "angular-sanitize": "^1.3.0",
     "angular-touch": "^1.3.0",
-    "bootstrap-sass-official": "^3.2.0"
+    "bootstrap-sass-official": "^3.2.0",
+    "grunt": "*",
+    "grunt-contrib": "*",
+    "less": "*"
   },
   "devDependencies": {
     "angular-mocks": "^1.3.0"
