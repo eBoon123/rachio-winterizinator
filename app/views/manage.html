@@ -1,0 +1,26 @@
+Checking API Key…
+<span ng-if="manage.keyIsValid"><ng-md-icon icon="check_circle"></ng-md-icon></span>
+<span ng-if="!manage.keyIsValid"><ng-md-icon icon="error"></ng-md-icon></span>
+<div ng-if="!manage.keyIsValid">
+  <h1>Yikes!</h1>
+  <p>We rant into a problem using the API key you gave us. Go back to the Rachio website, and copy and paste your API key again.</p>
+</div>
+<br/>
+<div ng-repeat="device in manage.rachioDeviceInfo">
+  <h4>{{device.name}}</h4>
+  <table class="table table-striped">
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="zone in device.zones | orderBy:'zoneNumber'">
+      <td>{{zone.zoneNumber}}</td>
+      <td><img ng-src="{{zone.customNozzle.imageUrl}}" style="width:2em"> {{zone.name}}<span ng-if="!zone.enabled"> (disabled)</span> <span ng-if="zone.requestProcessing" style="float:right"><img src="https://www.drupal.org/files/issues/throbber_0.gif" class="ajax-loader"/></span></td>
+      <td>
+        <button ng-if="!zone.running" ng-click="manage.turnOn(device, zone)" class="btn btn-success">Turn On</button>
+        <button ng-if="zone.running" ng-click="manage.allOff(device)" class="btn btn-danger">Turn Off</button>
+      </td>
+    </tr>
+  </table>
+</div>
