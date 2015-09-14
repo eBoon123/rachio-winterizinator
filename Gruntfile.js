@@ -524,7 +524,7 @@ module.exports = function (grunt) {
     var child = grunt.util.spawn({
       grunt: false,
       cmd: command,
-      args: 'sync -c s3.conf -r ./dist/* s3://winterizinator'.split(" "),
+      args: 'sync -c s3.conf -r ./dist/* s3://winterizinator.com'.split(" "),
       opts: {
         stdio: 'inherit'
       }

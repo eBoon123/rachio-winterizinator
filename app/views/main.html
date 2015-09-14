@@ -7,12 +7,12 @@
   <div class="jumbotron">
     <h1>Get Started</h1>
     <p class="lead">
-      <form novalidate class="css-form form-inline">
+      <form novalidate class="css-form form-inline" ng-submit="main.authorize()">
         <div class="form-horizontal">
           <label for="rachioKey"><a href="https://rachio.readme.io/docs/authentication" target="_blank"><ng-md-icon icon="help"></ng-md-icon></a> Rachio Key: </label>
           <input name="rachioKey" ng-model="main.apiKey" />
         </div>
-        <a class="btn btn-success" ng-href="#/manage/{{main.apiKey}}">Go</a>
+        <input type="submit" class="btn btn-success" value="Go" />
       </form>
     </p>
     <small>Your Rachio API key never reaches our server. We don't want it, anyway.</small>

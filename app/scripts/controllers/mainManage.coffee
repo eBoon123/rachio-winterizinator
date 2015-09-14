@@ -17,18 +17,23 @@
     vm.rachioDeviceInfo
     # get person info, and validate api key
     $http.get('https://api.rach.io/1/public/person/info', {headers: {'Authorization': "Bearer #{vm.rachioKey}"}}).then (response) ->
-      $timeout () ->
-        data = response.data
+      $timeout () -> 
         # alert data.id
+        console.log "connected"
+        console.log response
         if response.status == 200
           localStorageService.set 'rachioApiKey', vm.rachioKey
+          data = response.data
           vm.keyIsValid = true
-        else
-          vm.KeyIsValid = false
         vm.personKey = data.id
         vm.personKey.$apply
         console.log vm.personKey
         vm.deviceInfo()
+    , (response) -> 
+      $timeout () ->
+        console.log "error"
+        console.log response
+        vm.keyIsValid = false
         
     vm.deviceInfo = () ->
       console.log "getting all devices info"

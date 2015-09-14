@@ -8,7 +8,7 @@
 
 
 (->
-  MainCtrl = (localStorageService)->
+  MainCtrl = ($location, localStorageService)->
     vm = @
     vm.apiKey = localStorageService.get('rachioApiKey')
     vm.awesomeThings = [
@@ -19,9 +19,11 @@
     vm.update = (newApiKey) ->
       vm.apiKey = newApiKey
       alert(vm.apiKey)
+    vm.authorize = () ->
+      $location.path("/manage/#{vm.apiKey}")
     return
   MainCtrl
-    .$inject = ['localStorageService']
+    .$inject = ['$location', 'localStorageService']
   angular
     .module('rachioWinterizinatorApp')
     .controller 'MainCtrl', MainCtrl
