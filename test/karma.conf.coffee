@@ -26,6 +26,7 @@ module.exports = (config) ->
       'bower_components/angular-route/angular-route.js'
       'bower_components/angular-sanitize/angular-sanitize.js'
       'bower_components/angular-touch/angular-touch.js'
+      'bower_components/aws-sdk/dist/aws-sdk.js'
       'bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js'
       'bower_components/angular-mocks/angular-mocks.js'
       # endbower

@@ -517,6 +517,28 @@ module.exports = function (grunt) {
     'build'
   ]);
   
-  grunt.registerTask('heroku:development', 'clean less mincss');
-  grunt.registerTask('heroku:production', 'build');
+  grunt.registerTask('deployToS3', 'Deploying to S3 bucket', function(target){
+    var done = this.async();
+    var command = "/usr/local/bin/s3cmd";
+
+    var child = grunt.util.spawn({
+      grunt: false,
+      cmd: command,
+      args: 'sync -c s3.conf -r ./dist/* s3://winterizinator'.split(" "),
+      opts: {
+        stdio: 'inherit'
+      }
+    }, function(error, result, code){
+      if(code != 0 && error !== null) grunt.fatal("Error sycing with S3 bucket");
+
+      grunt.log.writeln(String(result).trim());
+
+      done();
+    });
+  });
+  
+  grunt.registerTask('deploy', [
+    'build',
+    'deployToS3'
+  ]);
 };
