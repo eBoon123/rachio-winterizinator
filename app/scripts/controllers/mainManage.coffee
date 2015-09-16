@@ -50,7 +50,7 @@
           zone.running = false for zone in device.zones
         
     vm.turnOn = (device, zone) ->
-      $http.put("https://api.rach.io/1/public/zone/start", {'id': zone.id, 'duration': 60}, {headers: {'Authorization': "Bearer #{vm.rachioKey}"}}).then (response) ->
+      $http.put("https://api.rach.io/1/public/zone/start", {'id': zone.id, 'duration': 3600}, {headers: {'Authorization': "Bearer #{vm.rachioKey}"}}).then (response) ->
         if response.status == 204
           otherZone.running = false for otherZone in device.zones
           zone.running = true
